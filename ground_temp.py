@@ -27,7 +27,10 @@ class DS18B20(object):
         return lines
         
     def crc_check(self, lines):
-        return lines[0].strip()[-3:] == "YES"
+        try:
+            return lines[0].strip()[-3:] == "YES"
+        except IndexError:
+            return False
         
     def read_temp(self):
         temp_c = -255
